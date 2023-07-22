@@ -57,7 +57,22 @@ template <typename T> class SLinkedList{
             return;
             
         }
+
         //add new node at the given postion
+	void addPos(T item, int pos){
+            Node<T>* node = new Node<T>;
+            node->val = item;
+            
+            Node<T>* temp = head;
+            pos--;
+            while(pos--){
+                temp = temp->next;
+            }
+            
+            node->next = temp->next;
+            temp->next = node;
+            return;
+        }
         
         //remove node from front
         //remove node from back
