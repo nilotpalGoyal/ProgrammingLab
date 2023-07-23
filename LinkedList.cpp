@@ -4,11 +4,11 @@
 template <typename T>
 class Node
 {
-
 public:
     T val;         // data inside the node
     Node<T> *next; // pointer to next node
 
+public:
     // constructor
     Node()
     {
@@ -16,7 +16,7 @@ public:
     }
 };
 
-template <typename T>
+template <class T>
 class SLinkedList
 {
 private:
