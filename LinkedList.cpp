@@ -1,125 +1,140 @@
 #include <iostream>
 #include <string>
 
-template <typename T>class Node{
-        
-    public:
-        T val;          //data inside the node
-        Node<T> *next;  //pointer to next node
-        
-        //constructor
-        Node(){
-            this->next = NULL;
-        }
+template <typename T>
+class Node
+{
+
+public:
+    T val;         // data inside the node
+    Node<T> *next; // pointer to next node
+
+    // constructor
+    Node()
+    {
+        this->next = NULL;
+    }
 };
 
-template <typename T> class SLinkedList{
-    private:
-        Node<T>* head;
-    
-    public: 
-        //constructor
-        SLinkedList(){
-            head = NULL;
-        }
-        
-        //add new node to back of the linkedlist 
-        void add(T item){
-            Node<T>* node = new Node<T>;
-            node->val = item;
-            
-            if(head == NULL){
-                head = node;
-                std::cout << "FIRST node added to list" << std::endl;
-                return;
-            }
-            
-            Node<T>* temp = head;
-            while(temp->next != NULL){
-                temp = temp->next;
-            }
-            temp->next = node;
-            std::cout << "node added at the back of list" << std::endl;
-        }
-        
-        //add new node to front of the linkedlist
-        void addFront(T item){
-            Node<T>* node = new Node<T>;
-            node->val = item;
-            
-            if(head == NULL){
-                head = node;
-                std::cout << "FIRST node added to list" << std::endl;
-                return;
-            }
-            node->next = head;
+template <typename T>
+class SLinkedList
+{
+private:
+    Node<T> *head;
+
+public:
+    // constructor
+    SLinkedList()
+    {
+        head = NULL;
+    }
+
+    // add new node to back of the linkedlist
+    void add(T item)
+    {
+        Node<T> *node = new Node<T>;
+        node->val = item;
+
+        if (head == NULL)
+        {
             head = node;
-            return;
-            
-        }
-
-        //add new node at the given postion
-	    void addPos(T item, int pos){
-
-            if(pos > length()) {
-                std::cout << "Out of bound!!\n";
-                return;
-            }
-
-            Node<T>* node = new Node<T>;
-            node->val = item;
-          	  
-            Node<T>* temp = head;
-            pos--;
-            while(pos--){
-                temp = temp->next;
-            }
-            
-            node->next = temp->next;
-            temp->next = node;
+            std::cout << "FIRST node added to list" << std::endl;
             return;
         }
-        
-        //remove node from front
 
+        Node<T> *temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = node;
+        std::cout << "node added at the back of list" << std::endl;
+    }
 
+    // add new node to front of the linkedlist
+    void addFront(T item)
+    {
+        Node<T> *node = new Node<T>;
+        node->val = item;
 
-        //remove node from back
-        //remove at the given postion
-        
-        //search for the given item in linkedlist
-        
-        //traverse linkedlist and display
-        void display(){
-            if(head == NULL){
-                std::cout << "list is empty!!" << std::endl;
-                return;
-            }
-            Node<T>* temp = head;
-            
-            while(temp != NULL){
-                std::cout << temp->val << ", ";
-                temp = temp->next;
-            }
-            std::cout << std::endl;
+        if (head == NULL)
+        {
+            head = node;
+            std::cout << "FIRST node added to list" << std::endl;
+            return;
+        }
+        node->next = head;
+        head = node;
+        return;
+    }
+
+    // add new node at the given postion
+    void addPos(T item, int pos)
+    {
+
+        if (pos > length())
+        {
+            std::cout << "Out of bound!!\n";
+            return;
         }
 
-        //length of the linkedlist
-        int length(){
-            int len = 0;
-            Node<T>* temp = head;
+        Node<T> *node = new Node<T>;
+        node->val = item;
 
-            while(temp != NULL){
-                len++;
-                temp = temp->next;
-            }
-            return len;
+        Node<T> *temp = head;
+        pos--;
+        while (pos--)
+        {
+            temp = temp->next;
         }
 
+        node->next = temp->next;
+        temp->next = node;
+        return;
+    }
+
+    // remove node from front
+
+    // remove node from back
+    // remove at the given postion
+
+    // search for the given item in linkedlist
+
+    // traverse linkedlist and display
+    void display()
+    {
+        if (head == NULL)
+        {
+            std::cout << "list is empty!!" << std::endl;
+            return;
+        }
+        Node<T> *temp = head;
+
+        while (temp != NULL)
+        {
+            std::cout << temp->val << ", ";
+            temp = temp->next;
+        }
+        std::cout << std::endl;
+    }
+
+    // length of the linkedlist
+    int length()
+    {
+        int len = 0;
+        Node<T> *temp = head;
+
+        while (temp != NULL)
+        {
+            len++;
+            temp = temp->next;
+        }
+        return len;
+    }
 };
 
-
-int main(){
+int main()
+{
     SLinkedList<int> myIntList;
     myIntList.add(12);
     myIntList.add(123);
@@ -129,7 +144,7 @@ int main(){
     myIntList.addFront(111);
     myIntList.addPos(999, 9);
     myIntList.display();
-    
+
     SLinkedList<float> myFloatList;
     myFloatList.add(1.5);
     myFloatList.add(1.512);
