@@ -1,0 +1,5 @@
+#ignore binary folder
+binary/
+
+#ignore .vscode
+.vscode/
