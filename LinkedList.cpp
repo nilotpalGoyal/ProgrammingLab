@@ -59,10 +59,16 @@ template <typename T> class SLinkedList{
         }
 
         //add new node at the given postion
-	void addPos(T item, int pos){
+	    void addPos(T item, int pos){
+
+            if(pos > length()) {
+                std::cout << "Out of bound!!\n";
+                return;
+            }
+
             Node<T>* node = new Node<T>;
             node->val = item;
-            
+          	  
             Node<T>* temp = head;
             pos--;
             while(pos--){
@@ -75,6 +81,9 @@ template <typename T> class SLinkedList{
         }
         
         //remove node from front
+
+
+
         //remove node from back
         //remove at the given postion
         
@@ -94,11 +103,19 @@ template <typename T> class SLinkedList{
             }
             std::cout << std::endl;
         }
+
         //length of the linkedlist
-        
-        
-        
-    
+        int length(){
+            int len = 0;
+            Node<T>* temp = head;
+
+            while(temp != NULL){
+                len++;
+                temp = temp->next;
+            }
+            return len;
+        }
+
 };
 
 
@@ -110,6 +127,7 @@ int main(){
     myIntList.addFront(1);
     myIntList.addFront(11);
     myIntList.addFront(111);
+    myIntList.addPos(999, 9);
     myIntList.display();
     
     SLinkedList<float> myFloatList;
