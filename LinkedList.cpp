@@ -94,8 +94,26 @@ public:
     }
 
     // remove node from front
+    void rmFront()
+    {
+        Node<T> *temp = head;
+        head = head->next;
+        delete temp;
+    }
 
     // remove node from back
+    void rmBack()
+    {
+        Node<T> *temp = head;
+        while (temp->next->next != NULL)
+        {
+            temp = temp->next;
+        }
+        delete temp->next;
+        temp->next = NULL;
+
+        std::cout << "Last Value: " << temp->val << "\n";
+    }
     // remove at the given postion
 
     // search for the given item in linkedlist
@@ -144,6 +162,8 @@ int main()
     myIntList.addFront(111);
     myIntList.addPos(999, 9);
     myIntList.display();
+    myIntList.rmFront();
+    myIntList.display();
 
     SLinkedList<float> myFloatList;
     myFloatList.add(1.5);
@@ -152,6 +172,8 @@ int main()
     myFloatList.addFront(231.225);
     myFloatList.addFront(232.225);
     myFloatList.addFront(233.225);
+    myFloatList.display();
+    myFloatList.rmBack();
     myFloatList.display();
     return 0;
 }
