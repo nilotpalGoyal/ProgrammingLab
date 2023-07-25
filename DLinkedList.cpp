@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 template <typename T>
 class DNode
@@ -65,6 +64,11 @@ public:
     // add new node at the position given
     void addPos(T item, int pos)
     {
+        if (pos > length())
+        {
+            std::cout << "out of bound!!\n";
+            return;
+        }
         std::cout << "adding node at pos: " << pos << "\n";
         DNode<T> *node = new DNode<T>;
         node->val = item;
@@ -92,6 +96,7 @@ public:
 
         temp->prev->next = NULL;
         delete temp;
+        std::cout << "Deleted node from the back\n";
     }
 
     // remove node from the front
@@ -99,11 +104,18 @@ public:
     {
         head = head->next;
         delete head->prev;
+        std::cout << "Deleted node from the front\n";
     }
 
     // remove node at the given pos
     void rmPos(int pos)
     {
+        std::cout << "deleted node at pos: " << pos << "\n";
+        if (pos > length())
+        {
+            std::cout << "out of bound!!\n";
+            return;
+        }
         DNode<T> *temp = head;
         while (--pos)
         {
@@ -144,7 +156,19 @@ public:
         }
         std::cout << "\n-----------------------------------\n";
     }
+
     // calculate the length of the list
+    int length()
+    {
+        int len = 0;
+        DNode<T> *temp = head;
+        while (temp != NULL)
+        {
+            len++;
+            temp = temp->next;
+        }
+        return len;
+    }
 };
 
 int main()
@@ -155,9 +179,10 @@ int main()
     intDoublyLL.add(124);
     intDoublyLL.add(126);
     intDoublyLL.addFront(99);
-    intDoublyLL.addPos(66, 4);
+    intDoublyLL.addPos(66, 9);
     intDoublyLL.display();
     intDoublyLL.displayReverse();
+    std::cout << "length of list is: " << intDoublyLL.length() << "\n";
 
     intDoublyLL.rm();
     intDoublyLL.add(100);
@@ -166,6 +191,8 @@ int main()
     intDoublyLL.display();
     intDoublyLL.rmPos(2);
     intDoublyLL.display();
+
+    std::cout << "length of list is: " << intDoublyLL.length() << "\n";
 
     return 0;
 }
