@@ -114,8 +114,16 @@ public:
 
         std::cout << "Last Value: " << temp->val << "\n";
     }
-    // remove at the given postion
 
+    // remove at the given postion
+    void rmPos(int pos)
+    {
+        if (pos > length())
+        {
+            std::cout << "Out of bound!!\n";
+            return;
+        }
+    }
     // search for the given item in linkedlist
 
     // traverse linkedlist and display

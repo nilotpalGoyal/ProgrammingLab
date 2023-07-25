@@ -3,3 +3,6 @@ binary/
 
 #ignore .vscode
 .vscode/
+
+#ignore other files
+quick*
