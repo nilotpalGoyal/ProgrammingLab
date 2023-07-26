@@ -66,7 +66,8 @@ public:
     {
         if (pos > length())
         {
-            std::cout << "out of bound!!\n";
+            std::cout << "out of bound!! Adding at the back of list.\n";
+            add(item);
             return;
         }
         std::cout << "adding node at pos: " << pos << "\n";
@@ -113,7 +114,8 @@ public:
         std::cout << "deleted node at pos: " << pos << "\n";
         if (pos > length())
         {
-            std::cout << "out of bound!!\n";
+            std::cout << "out of bound!! Deleting from the back\n";
+            rm();
             return;
         }
         DNode<T> *temp = head;
@@ -179,7 +181,7 @@ int main()
     intDoublyLL.add(124);
     intDoublyLL.add(126);
     intDoublyLL.addFront(99);
-    intDoublyLL.addPos(66, 9);
+    intDoublyLL.addPos(66, 12);
     intDoublyLL.display();
     intDoublyLL.displayReverse();
     std::cout << "length of list is: " << intDoublyLL.length() << "\n";
@@ -189,7 +191,7 @@ int main()
     intDoublyLL.add(101);
     intDoublyLL.rmFront();
     intDoublyLL.display();
-    intDoublyLL.rmPos(2);
+    intDoublyLL.rmPos(33);
     intDoublyLL.display();
 
     std::cout << "length of list is: " << intDoublyLL.length() << "\n";

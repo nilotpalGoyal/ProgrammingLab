@@ -74,7 +74,8 @@ public:
 
         if (pos > length())
         {
-            std::cout << "Out of bound!!\n";
+            std::cout << "out of bound!! Adding at the back of list.\n";
+            add(item);
             return;
         }
 
@@ -111,8 +112,6 @@ public:
         }
         delete temp->next;
         temp->next = NULL;
-
-        std::cout << "Last Value: " << temp->val << "\n";
     }
 
     // remove at the given postion
@@ -120,7 +119,8 @@ public:
     {
         if (pos > length())
         {
-            std::cout << "Out of bound!!\n";
+            std::cout << "out of bound!! Deleting from the back of the list.\n";
+            rmBack();
             return;
         }
     }
@@ -181,7 +181,7 @@ int main()
     myFloatList.addFront(232.225);
     myFloatList.addFront(233.225);
     myFloatList.display();
-    myFloatList.rmBack();
+    myFloatList.rmPos(10);
     myFloatList.display();
     return 0;
 }
