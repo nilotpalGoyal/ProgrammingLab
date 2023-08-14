@@ -161,5 +161,35 @@ public:
         return len;
     }
 };
+template <class T>
+class Stack{
+        private:
+                SLinkedList<T> st;
+                Node<T> *top;
+
+        public:
+                //constructor
+                Stack(){
+                        this->top = NULL;
+                }
+
+                void push(T item){
+                        if(top == NULL){
+                                st.addFront(item);
+                        }
+                        else{
+                                st.addFront(item);
+                        }
+                }
+
+                T pop(){
+                        st.rmFront();
+                }
+
+                void stDisplay(){
+                        st.display();
+                }
+};
+
 
 #endif
