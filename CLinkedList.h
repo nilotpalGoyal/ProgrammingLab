@@ -1,3 +1,6 @@
+#ifndef CLINKEDLIST_H
+#define CLINKEDLIST_H
+
 #include <iostream>
 
 template <typename T>
@@ -53,6 +56,12 @@ public:
     // add node to the front
     void addFront(T item)
     {
+        if (head == NULL)
+        {
+            add(item);
+            return;
+        }
+
         CNode<T> *node = new CNode<T>;
         node->val = item;
 
@@ -70,10 +79,21 @@ public:
     // add node at the given position
     void addPos(T item, int pos)
     {
+        if (head == NULL)
+        {
+            add(item);
+            return;
+        }
+
         CNode<T> *node = new CNode<T>;
         node->val = item;
 
         CNode<T> *temp = head;
+        if (pos > length())
+        {
+            add(item);
+            return;
+        }
         while (--pos)
         {
             temp = temp->next;
@@ -97,8 +117,41 @@ public:
     }
 
     // remove node from the front
+    void rmFront()
+    {
+        if (length() == 1)
+        {
+            delete head;
+            return;
+        }
+
+        CNode<T> *temp = head;
+        while (temp->next != head)
+        {
+            temp = temp->next;
+        }
+
+        CNode<T> *dummy = head;
+        head = head->next;
+        temp->next = head;
+    }
 
     // remove node from the given position
+    void rmPos(int pos)
+    {
+        if (pos > length())
+        {
+            std::cout << "out of bound!! deleting from the end of list.\n";
+            rm();
+            return;
+        }
+
+        CNode<T> *temp = head;
+        while (--pos)
+        {
+            temp = temp->next;
+        }
+    }
 
     // display the list
     void display()
@@ -112,25 +165,22 @@ public:
         }
         std::cout << std::endl;
     }
+
     // calculate the length
+    int length()
+    {
+        int len = 0;
+        CNode<T> *temp = head;
+        if (temp->next == head)
+            return 1;
+        while (temp->next != head)
+        {
+            len++;
+            temp = temp->next;
+        }
+        len++;
+        return len;
+    }
 };
 
-int main()
-{
-    CLinkedList<int> myList;
-    myList.add(11);
-    myList.add(12);
-    myList.add(13);
-    myList.add(14);
-    myList.add(15);
-    myList.add(16);
-    myList.addFront(6);
-    myList.addFront(99);
-    myList.addFront(88);
-    myList.addPos(22, 5);
-    myList.display();
-
-    myList.rm();
-    myList.display();
-    return 0;
-}
+#endif

@@ -1,3 +1,6 @@
+#ifndef DLINKEDLIST_H
+#define DLINKEDLIST_H
+
 #include <iostream>
 
 template <typename T>
@@ -173,28 +176,4 @@ public:
     }
 };
 
-int main()
-{
-    DLinkedList<int> intDoublyLL;
-    intDoublyLL.add(121);
-    intDoublyLL.add(123);
-    intDoublyLL.add(124);
-    intDoublyLL.add(126);
-    intDoublyLL.addFront(99);
-    intDoublyLL.addPos(66, 12);
-    intDoublyLL.display();
-    intDoublyLL.displayReverse();
-    std::cout << "length of list is: " << intDoublyLL.length() << "\n";
-
-    intDoublyLL.rm();
-    intDoublyLL.add(100);
-    intDoublyLL.add(101);
-    intDoublyLL.rmFront();
-    intDoublyLL.display();
-    intDoublyLL.rmPos(33);
-    intDoublyLL.display();
-
-    std::cout << "length of list is: " << intDoublyLL.length() << "\n";
-
-    return 0;
-}
+#endif
