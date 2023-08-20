@@ -16,4 +16,7 @@ public:
     ~Stack();
 };
 
+template <typename T>
+Stack<T>::Stack() {}
+
 #endif

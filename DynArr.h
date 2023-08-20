@@ -3,106 +3,109 @@
 
 #include <iostream>
 
-using namespace std;
-
-template <class T>
-class ArrNode
+template <typename T>
+class DynArr
 {
-public:
-    T *array;
-    int length;
+private:
+    T *elements;
+    int capacity;
+    int count;
 
-    ArrNode()
-    {
-        length = 0;
-    }
+    // private methods
+    void expandCapacity();
+
+public:
+    DynArr();
+    DynArr(int, T);
+
+    // Overloads [] to select elements from this vector.
+    T &operator[](int);
+
+    void insert(int, T);
+    void remove(int);
+    void pushBack(T);
+    int size() const;
 };
 
 template <typename T>
-class DynArray
+DynArr<T>::DynArr()
 {
-public:
-    ArrNode<T> ad;
+    count = capacity = 0;
+    elements = NULL;
+}
 
-    void insertEl()
+template <typename T>
+DynArr<T>::DynArr(int n, T value)
+{
+    count = capacity = n;
+    elements = (n == 0) ? NULL : new T[n];
+    for (int i = 0; i < n; i++)
     {
-        T num;
-        int pos;
-        cout << "Enter a value to be inserted: ";
-        cin >> num;
-        cout << "Enter the position at which the new element is to be inserted: ";
-        cin >> pos;
-        if (pos <= ad.length + 1)
-        {
-            ad.length++;
-            for (int i = pos - 1; i < ad.length; i++)
-            {
-                ad.array[i + 1] = ad.array[i];
-            }
-            ad.array[pos - 1] = num;
-            display();
-        }
-        else
-        {
-            cout << "The element cannnot be inserted at the given position." << endl;
-        }
+        elements[i] = value;
     }
+}
 
-    void deleteEl()
+template <typename T>
+void DynArr<T>::expandCapacity()
+{
+    capacity = std::max(1, capacity * 2);
+    T *array = new T[capacity];
+    for (int i = 0; i < count; i++)
     {
-        int num;
-        cout << "Enter the value to be deleted: ";
-        cin >> num;
-        for (int i = 0; i < ad.length; i++)
-        {
-            if (ad.array[i] == num)
-            {
-                for (int j = i; j < ad.length; j++)
-                {
-                    ad.array[j] = ad.array[j + 1];
-                }
-                ad.length--;
-                display();
-                break;
-            }
-            else
-            {
-                cout << "The given element could not be found." << endl;
-            }
-        }
+        array[i] = elements[i];
     }
+    if (elements != NULL)
+        delete[] elements;
+    elements = array;
+}
 
-    void searchEl()
+template <typename T>
+void DynArr<T>::insert(int index, T value)
+{
+    if (count == capacity)
+        expandCapacity();
+    if (index < 0 || index > count)
     {
-        int num, found = 0;
-        cout << "Enter a number that you want to be searched: ";
-        cin >> num;
-
-        for (int i = 0; i < ad.length; i++)
-        {
-            if (ad.array[i] == num)
-            {
-                cout << "The element is found at position " << i + 1 << endl;
-                found++;
-                break;
-            }
-        }
-        if (found == 0)
-        {
-            cout << "The given element is not present in the list." << endl;
-        }
+        perror("insert: index out of range");
     }
-
-    void display()
+    for (int i = count; i > index; i--)
     {
-
-        cout << "The new list is: ";
-        for (int i = 0; i < ad.length; i++)
-        {
-            cout << ad.array[i] << " ";
-        }
-        cout << endl;
+        elements[i] = elements[i - 1];
     }
-};
+    elements[index] = value;
+    count++;
+}
+
+template <typename T>
+void DynArr<T>::remove(int index)
+{
+    if (index < 0 || index >= count)
+        perror("remove: index out of range");
+    for (int i = index; i < count - 1; i++)
+    {
+        elements[i] = elements[i + 1];
+    }
+    count--;
+}
+
+template <typename T>
+void DynArr<T>::pushBack(T value)
+{
+    insert(count, value);
+}
+
+template <typename T>
+int DynArr<T>::size() const
+{
+    return count;
+}
+
+template <typename T>
+T &DynArr<T>::operator[](int index)
+{
+    if (index < 0 || index >= count)
+        perror("Selection index out of range");
+    return elements[index];
+}
 
 #endif

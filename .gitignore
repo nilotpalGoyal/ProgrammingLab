@@ -7,3 +7,5 @@ binary/
 #ignore other files
 quick*
 heap*
+*.o
+*.exe

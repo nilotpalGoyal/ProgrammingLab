@@ -24,10 +24,9 @@ int main()
     clist.add(1252365740);
     clist.display();
 
-    DynArray<int> darr;
-    // darr.insertEl(11, 2);
-    // darr.insertEl(12, 1);
-    // darr.insertEl(13, 3);
-
-    return 0;
+    DynArr<int> arr(10, 0);
+    arr.pushBack(12);
+    arr.remove(2);
+    arr[0] = 12;
+    std::cout << arr[0];
 }
