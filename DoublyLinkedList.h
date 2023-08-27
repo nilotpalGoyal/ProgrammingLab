@@ -8,8 +8,8 @@ private:
     struct Node
     {
         T val;
-        Node<T> *prev;
-        Node<T> *next;
+        Node *prev;
+        Node *next;
         Node(const T &value) : val(value), prev(nullptr), next(nullptr) {}
     };
 
@@ -23,7 +23,9 @@ public:
 
     void pushFront(const T &value);
     void pushBack(const T &value);
-    void deleteNodeAtPosition(int position);
+    void popFront();
+    void popBack();
+    void popAtPosition(int position);
     void print() const;
     int getSize() const;
 };
