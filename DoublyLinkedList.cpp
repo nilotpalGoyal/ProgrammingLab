@@ -61,11 +61,19 @@ void DoublyLinkedList<T>::deleteNodeAtPosition(int position)
 template <typename T>
 void DoublyLinkedList<T>::print() const
 {
+    Node *current = head;
+    while (current)
+    {
+        std::cout << current->data << " ";
+        current = current->next;
+    }
+    std::cout << std::endl;
 }
 
 template <typename T>
 int DoublyLinkedList<T>::getSize() const
 {
+    return size;
 }
 
 // Explicit instantiation for the supported types
