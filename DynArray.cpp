@@ -1,36 +1,5 @@
-#ifndef DYNARR_H
-#define DYNARR_H
-
+#include "DynArray.h"
 #include <iostream>
-
-template <typename T>
-class DynArr
-{
-private:
-    T *elements;
-    int capacity;
-    int count;
-
-    // private methods
-    void expandCapacity();
-
-public:
-    DynArr();
-    DynArr(int, T);
-
-    // Overloads [] to select elements from this vector.
-    T &operator[](int);
-
-    void insert(int, T);
-    void remove(int);
-    void pushBack(T);
-    int size() const;
-
-    T &front();
-    const T &front() const;
-    T &back();
-    const T &back() const;
-};
 
 template <typename T>
 DynArr<T>::DynArr() : elements(nullptr), capacity(0), count(0) {}
@@ -43,6 +12,13 @@ DynArr<T>::DynArr(int n, T value) : capacity(n), count(n)
     {
         elements[i] = value;
     }
+}
+
+template <typename T>
+DynArr<T>::~DynArr()
+{
+    if (count == 0)
+        delete[] elements;
 }
 
 template <typename T>
@@ -144,5 +120,3 @@ T &DynArr<T>::operator[](int index)
         perror("Selection index out of range");
     return elements[index];
 }
-
-#endif

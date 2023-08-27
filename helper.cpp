@@ -1,8 +1,10 @@
 #include "LinkedList.h"
-#include "DLinkedList.h"
 #include "CLinkedList.h"
-#include "DynArr.h"
+#include "DynArray.h"
 #include "ListStack.h"
+#include "DoublyLinkedList.h"
+#include "DynArray2D.h"
+#include "ArrayStack.h"
 
 int main()
 {
@@ -14,12 +16,17 @@ int main()
     std::cout << "linkedlist : ";
     mylist.display();
 
-    DLinkedList<float> dlist;
-    dlist.add(12.4);
-    dlist.add(3.13);
-    dlist.add(1.423);
+    DoublyLinkedList<float> dlist;
+    dlist.pushBack(11);
+    dlist.pushBack(12);
+    dlist.pushBack(13);
+    dlist.pushBack(14);
+    dlist.popAtPosition(1);
+    dlist.popAtPosition(3);
+    dlist.popAtPosition(3);
+    dlist.popAtPosition(3);
     std::cout << "doubly linkedlist : ";
-    dlist.display();
+    dlist.print();
 
     CLinkedList<long> clist;
     clist.add(12124);
@@ -45,12 +52,21 @@ int main()
     st.push(14);
     st.push(16);
 
-    std::cout << "\nsize of stack:" << st.getsize() << "\n";
-    for (int i = 0; i < st.getsize(); i++)
-    {
-        std::cout << st.top() << " ";
-        st.pop();
-    }
+    Stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.pop();
+    stk.pop();
 
-    // std::cout << "\ntop of stack:" << st.top();
+    std::cout << "stack top: " << stk.top() << "\n";
+
+    Dynamic2DArray<int> b(3, 3, 2);
+    for (int i = 0; i < b.getSize(); i++)
+    {
+        for (int j = 0; j < b[i].size(); j++)
+        {
+            std::cout << b[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
 }

@@ -1,7 +1,7 @@
 #ifndef ADJACENCYMATRIX_H
 #define ADJACENCYMATRIX_H
 
-#include "DynArr.h"
+#include "DynArray2D.h"
 
 template <typename T>
 class AdjacencyMatrix

@@ -1,4 +1,7 @@
-#include "DynArr.h"
+#ifndef STACKUSINGDYNARR_H
+#define STACKUSINGDYNARR_H
+
+#include "DynArray.h"
 
 template <typename T>
 class Stack
@@ -18,7 +21,7 @@ public:
     {
         if (!isEmpty())
         {
-            dynArray.popBack();
+            dynArray.remove(dynArray.size() - 1);
         }
         else
         {
@@ -52,3 +55,5 @@ public:
         return dynArray.size();
     }
 };
+
+#endif
