@@ -92,6 +92,16 @@ void DynArr<T>::pushBack(T value)
 }
 
 template <typename T>
+T &DynArr<T>::front()
+{
+    if (count > 0)
+    {
+        return elements[0];
+    }
+    throw std::out_of_range("front: array is empty");
+}
+
+template <typename T>
 const T &DynArr<T>::front() const
 {
     if (count > 0)
@@ -103,6 +113,16 @@ const T &DynArr<T>::front() const
 
 template <typename T>
 T &DynArr<T>::back()
+{
+    if (count > 0)
+    {
+        return elements[count - 1];
+    }
+    throw std::out_of_range("back: array is empty");
+}
+
+template <typename T>
+const T &DynArr<T>::back() const
 {
     if (count > 0)
     {
