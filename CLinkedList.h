@@ -38,7 +38,7 @@ public:
         {
             head = node;
             head->next = head;
-            std::cout << "added first node.\n";
+            // std::cout << "added first node.\n";
             return;
         }
 
@@ -50,7 +50,7 @@ public:
 
         node->next = temp->next;
         temp->next = node;
-        std::cout << "added a node at the back\n";
+        // std::cout << "added a node at the back\n";
     }
 
     // add node to the front
@@ -141,7 +141,7 @@ public:
     {
         if (pos > length())
         {
-            std::cout << "out of bound!! deleting from the end of list.\n";
+            // std::cout << "out of bound!! deleting from the end of list.\n";
             rm();
             return;
         }

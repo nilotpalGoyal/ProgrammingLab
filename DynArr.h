@@ -25,20 +25,20 @@ public:
     void remove(int);
     void pushBack(T);
     int size() const;
+
+    T &front();
+    const T &front() const;
+    T &back();
+    const T &back() const;
 };
 
 template <typename T>
-DynArr<T>::DynArr()
-{
-    count = capacity = 0;
-    elements = NULL;
-}
+DynArr<T>::DynArr() : elements(nullptr), capacity(0), count(0) {}
 
 template <typename T>
-DynArr<T>::DynArr(int n, T value)
+DynArr<T>::DynArr(int n, T value) : capacity(n), count(n)
 {
-    count = capacity = n;
-    elements = (n == 0) ? NULL : new T[n];
+    elements = (n == 0) ? nullptr : new T[n];
     for (int i = 0; i < n; i++)
     {
         elements[i] = value;
@@ -50,12 +50,8 @@ void DynArr<T>::expandCapacity()
 {
     capacity = std::max(1, capacity * 2);
     T *array = new T[capacity];
-    for (int i = 0; i < count; i++)
-    {
-        array[i] = elements[i];
-    }
-    if (elements != NULL)
-        delete[] elements;
+    std::copy(elements, elements + count, array);
+    delete[] elements;
     elements = array;
 }
 
@@ -66,7 +62,8 @@ void DynArr<T>::insert(int index, T value)
         expandCapacity();
     if (index < 0 || index > count)
     {
-        perror("insert: index out of range");
+        std::cerr << "insert: index out of range" << std::endl;
+        return;
     }
     for (int i = count; i > index; i--)
     {
@@ -92,6 +89,26 @@ template <typename T>
 void DynArr<T>::pushBack(T value)
 {
     insert(count, value);
+}
+
+template <typename T>
+const T &DynArr<T>::front() const
+{
+    if (count > 0)
+    {
+        return elements[0];
+    }
+    throw std::out_of_range("front: array is empty");
+}
+
+template <typename T>
+T &DynArr<T>::back()
+{
+    if (count > 0)
+    {
+        return elements[count - 1];
+    }
+    throw std::out_of_range("back: array is empty");
 }
 
 template <typename T>

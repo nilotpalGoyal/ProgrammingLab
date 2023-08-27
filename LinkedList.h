@@ -32,6 +32,11 @@ public:
         head = NULL;
     }
 
+    const T getFrontval()
+    {
+        return head->val;
+    }
+
     // add new node to back of the linkedlist
     void add(T item)
     {
@@ -41,7 +46,7 @@ public:
         if (head == NULL)
         {
             head = node;
-            std::cout << "FIRST node added to list" << std::endl;
+            // std::cout << "FIRST node added to list" << std::endl;
             return;
         }
 
@@ -51,7 +56,7 @@ public:
             temp = temp->next;
         }
         temp->next = node;
-        std::cout << "node added at the back of list" << std::endl;
+        // std::cout << "node added at the back of list" << std::endl;
     }
 
     // add new node to front of the linkedlist
@@ -63,7 +68,7 @@ public:
         if (head == NULL)
         {
             head = node;
-            std::cout << "FIRST node added to list" << std::endl;
+            // std::cout << "FIRST node added to list" << std::endl;
             return;
         }
         node->next = head;
@@ -77,7 +82,7 @@ public:
 
         if (pos > length())
         {
-            std::cout << "out of bound!! Adding at the back of list.\n";
+            // std::cout << "out of bound!! Adding at the back of list.\n";
             add(item);
             return;
         }
@@ -122,7 +127,7 @@ public:
     {
         if (pos > length())
         {
-            std::cout << "out of bound!! Deleting from the back of the list.\n";
+            // std::cout << "out of bound!! Deleting from the back of the list.\n";
             rmBack();
             return;
         }

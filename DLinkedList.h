@@ -39,7 +39,7 @@ public:
         if (head == NULL)
         {
             head = node;
-            std::cout << "First node added to the list.\n";
+            // std::cout << "First node added to the list.\n";
             return;
         }
 
@@ -50,7 +50,7 @@ public:
         }
         node->prev = temp;
         temp->next = node;
-        std::cout << "Node addedat the back of the list.\n";
+        // std::cout << "Node addedat the back of the list.\n";
     }
 
     // add new node at the front of list
@@ -61,7 +61,7 @@ public:
         head->prev = node;
         node->next = head;
         head = node;
-        std::cout << "node added at the front\n";
+        // std::cout << "node added at the front\n";
     }
 
     // add new node at the position given
@@ -69,7 +69,7 @@ public:
     {
         if (pos > length())
         {
-            std::cout << "out of bound!! Adding at the back of list.\n";
+            // std::cout << "out of bound!! Adding at the back of list.\n";
             add(item);
             return;
         }
@@ -100,7 +100,7 @@ public:
 
         temp->prev->next = NULL;
         delete temp;
-        std::cout << "Deleted node from the back\n";
+        // std::cout << "Deleted node from the back\n";
     }
 
     // remove node from the front
@@ -108,16 +108,16 @@ public:
     {
         head = head->next;
         delete head->prev;
-        std::cout << "Deleted node from the front\n";
+        // std::cout << "Deleted node from the front\n";
     }
 
     // remove node at the given pos
     void rmPos(int pos)
     {
-        std::cout << "deleted node at pos: " << pos << "\n";
+        // std::cout << "deleted node at pos: " << pos << "\n";
         if (pos > length())
         {
-            std::cout << "out of bound!! Deleting from the back\n";
+            // std::cout << "out of bound!! Deleting from the back\n";
             rm();
             return;
         }
@@ -137,13 +137,13 @@ public:
     display()
     {
         DNode<T> *temp = head;
-        std::cout << "--------------FORWARD-------------\n";
+        // std::cout << "--------------FORWARD-------------\n";
         while (temp != NULL)
         {
             std::cout << temp->val << " ";
             temp = temp->next;
         }
-        std::cout << "\n----------------------------------\n";
+        // std::cout << "\n----------------------------------\n";
     }
 
     void displayReverse()
@@ -153,13 +153,13 @@ public:
         {
             temp = temp->next;
         }
-        std::cout << "--------------BACKWARD-------------\n";
+        // std::cout << "--------------BACKWARD-------------\n";
         while (temp != NULL)
         {
             std::cout << temp->val << " ";
             temp = temp->prev;
         }
-        std::cout << "\n-----------------------------------\n";
+        // std::cout << "\n-----------------------------------\n";
     }
 
     // calculate the length of the list
