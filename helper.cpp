@@ -28,13 +28,6 @@ int main()
     std::cout << "doubly linkedlist : ";
     dlist.print();
 
-    CLinkedList<long> clist;
-    clist.add(12124);
-    clist.add(1231244140);
-    clist.add(1252365740);
-    std::cout << "\ncircular linkedlist : ";
-    clist.display();
-
     DynArr<int> arr(10, 0);
     std::cout << "Dynamic Array: ";
     for (int i = 0; i < arr.size(); i++)
@@ -69,4 +62,17 @@ int main()
         }
         std::cout << "\n";
     }
+
+    CLinkedList<int> clist;
+    clist.add(11);
+    clist.add(12);
+    clist.add(12);
+    clist.add(12);
+    clist.add(14);
+    clist.display();
+    clist.rmFront();
+    clist.rm();
+    clist.display();
+    clist.addPos(123, 4);
+    clist.display();
 }

@@ -1,186 +1,40 @@
 #ifndef CLINKEDLIST_H
 #define CLINKEDLIST_H
 
-#include <iostream>
-
-template <typename T>
-class CNode
-{
-public:
-    T val;
-    CNode<T> *next;
-
-    CNode()
-    {
-        this->next = NULL;
-    }
-};
-
 template <typename T>
 class CLinkedList
 {
 private:
-    CNode<T> *head;
+    Node<T> *head;
 
 public:
-    CLinkedList()
-    {
-        this->head = NULL;
-    }
+    CLinkedList();
 
     // add node to the list ie back
-    void add(T item)
-    {
-        CNode<T> *node = new CNode<T>;
-        node->val = item;
-
-        if (head == NULL)
-        {
-            head = node;
-            head->next = head;
-            // std::cout << "added first node.\n";
-            return;
-        }
-
-        CNode<T> *temp = head;
-        while (temp->next != head)
-        {
-            temp = temp->next;
-        }
-
-        node->next = temp->next;
-        temp->next = node;
-        // std::cout << "added a node at the back\n";
-    }
+    void add(T item);
 
     // add node to the front
-    void addFront(T item)
-    {
-        if (head == NULL)
-        {
-            add(item);
-            return;
-        }
-
-        CNode<T> *node = new CNode<T>;
-        node->val = item;
-
-        CNode<T> *temp = head;
-        while (temp->next != head)
-        {
-            temp = temp->next;
-        }
-
-        node->next = head;
-        temp->next = node;
-        head = node;
-    }
+    void addFront(T item);
 
     // add node at the given position
-    void addPos(T item, int pos)
-    {
-        if (head == NULL)
-        {
-            add(item);
-            return;
-        }
-
-        CNode<T> *node = new CNode<T>;
-        node->val = item;
-
-        CNode<T> *temp = head;
-        if (pos > length())
-        {
-            add(item);
-            return;
-        }
-        while (--pos)
-        {
-            temp = temp->next;
-        }
-
-        node->next = temp->next;
-        temp->next = node;
-    }
+    void addPos(T item, int pos);
 
     // remove node from the back
-    void rm()
-    {
-        CNode<T> *temp = head;
-        while (temp->next->next != head)
-        {
-            temp = temp->next;
-        }
-
-        delete temp->next;
-        temp->next = head;
-    }
+    void rm();
 
     // remove node from the front
-    void rmFront()
-    {
-        if (length() == 1)
-        {
-            delete head;
-            return;
-        }
-
-        CNode<T> *temp = head;
-        while (temp->next != head)
-        {
-            temp = temp->next;
-        }
-
-        CNode<T> *dummy = head;
-        head = head->next;
-        temp->next = head;
-    }
+    void rmFront();
 
     // remove node from the given position
-    void rmPos(int pos)
-    {
-        if (pos > length())
-        {
-            // std::cout << "out of bound!! deleting from the end of list.\n";
-            rm();
-            return;
-        }
-
-        CNode<T> *temp = head;
-        while (--pos)
-        {
-            temp = temp->next;
-        }
-    }
+    void rmPos(int pos);
 
     // display the list
-    void display()
-    {
-        std::cout << head->val << " ";
-        CNode<T> *temp = head->next;
-        while (temp != head)
-        {
-            std::cout << temp->val << " ";
-            temp = temp->next;
-        }
-        std::cout << std::endl;
-    }
+    void display();
 
     // calculate the length
-    int length()
-    {
-        int len = 0;
-        CNode<T> *temp = head;
-        if (temp->next == head)
-            return 1;
-        while (temp->next != head)
-        {
-            len++;
-            temp = temp->next;
-        }
-        len++;
-        return len;
-    }
+    int length();
 };
+
+#include "CLinkedList.cpp"
 
 #endif
