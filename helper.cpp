@@ -5,6 +5,8 @@
 #include "DoublyLinkedList.h"
 #include "DynArray2D.h"
 #include "ArrayStack.h"
+#include "ListQueue.h"
+#include "ArrayQueue.h"
 
 int main()
 {
@@ -51,7 +53,7 @@ int main()
     stk.pop();
     stk.pop();
 
-    std::cout << "stack top: " << stk.top() << "\n";
+    std::cout << "\nstack top: " << stk.top() << "\n";
 
     Dynamic2DArray<int> b(3, 3, 2);
     for (int i = 0; i < b.getSize(); i++)
@@ -63,16 +65,25 @@ int main()
         std::cout << "\n";
     }
 
-    CLinkedList<int> clist;
-    clist.add(11);
-    clist.add(12);
-    clist.add(12);
-    clist.add(12);
-    clist.add(14);
+    CircularLinkedList<int> clist;
+    clist.append(11);
+    clist.append(12);
+    clist.append(13);
+    clist.append(14);
+    clist.append(15);
     clist.display();
-    clist.rmFront();
-    clist.rm();
-    clist.display();
-    clist.addPos(123, 4);
-    clist.display();
+
+    Queue<int> q;
+    q.enqueue(88);
+    q.enqueue(89);
+    q.enqueue(90);
+    q.dequeue();
+    std::cout << q.peek() << "\n";
+
+    ArrayQueue<int> q1;
+    q1.enqueue(12);
+    q1.enqueue(123);
+    q1.enqueue(1234);
+    q1.dequeue();
+    std::cout << q1.peek();
 }
